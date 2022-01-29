@@ -10,6 +10,7 @@ public class LevelManagement : MonoBehaviour
     private float biasX = 1.2f, biasY = 1.25f;
     private float borderTop = 6.0f, borderBottom = 4.5f;
 
+    private float k;
     private GameObject mainCam;
 
     void Start()
@@ -22,12 +23,16 @@ public class LevelManagement : MonoBehaviour
         }
 
         mainCam = GameObject.FindWithTag("MainCamera");
+
+        k = Screen.height / 10.0f;
     }
 
     void Update()
     {
-        float moveCamY = Input.GetAxis("Mouse Y") * 0.1f;
-        mainCam.transform.Translate(0.0f, -moveCamY, 0.0f);
+        float moveCamY = 0.0f;
+        if(Input.touchCount > 0)
+            moveCamY = - Input.GetTouch(0).deltaPosition.y / k;
+        mainCam.transform.Translate(0.0f, moveCamY, 0.0f);
         if(mainCam.transform.position.y > borderTop)
             mainCam.transform.Translate(0.0f, - mainCam.transform.position.y + borderTop, 0.0f);
         if(mainCam.transform.position.y < borderBottom)
