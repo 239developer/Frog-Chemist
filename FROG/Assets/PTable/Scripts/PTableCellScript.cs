@@ -57,8 +57,8 @@ public class PTableCellScript : MonoBehaviour
         GetComponent<Image>().color = color;
     }
 
-    public void Rotate()
+    public void Rotate(float value)
     {
-        
+        transform.Rotate(0.0f, 0.0f, value);
     }
 }

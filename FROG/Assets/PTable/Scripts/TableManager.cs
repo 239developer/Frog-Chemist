@@ -6,7 +6,7 @@ public class TableManager : MonoBehaviour
 {
     public GameObject parentObject, defaultCell;
     public float cellSpacing = 170.0f, scale = 0.15f;
-    public List<GameObject> cells;
+    public List<GameObject> cells = new List<GameObject>();
 
     void CreateCell(int x, int y) //empty cell
     {
@@ -53,9 +53,13 @@ public class TableManager : MonoBehaviour
         parentObject.transform.Rotate(0.0f, 0.0f, value);
     }
 
-    void TurnAllElements(float value)
+    void TurnAllCells(float value)
     {
-
+        if(cells != null)
+        foreach(GameObject g in cells)
+        {
+            g.GetComponent<PTableCellScript>().Rotate(value);
+        }
     }
 
     void Start()
@@ -68,7 +72,7 @@ public class TableManager : MonoBehaviour
     {
         if(Input.GetMouseButton(0))
         {
-            TurnTable(720 * Time.deltaTime);
+            TurnAllCells(720 * Time.deltaTime);
         }
     }
 }
