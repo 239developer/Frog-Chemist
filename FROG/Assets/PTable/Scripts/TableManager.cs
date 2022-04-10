@@ -70,11 +70,7 @@ public class TableManager : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetMouseButton(0) || true)
-        {
-            TurnTable(180 * Time.deltaTime);
-            TurnAllCells(-360 * Time.deltaTime);
-        }
+        //this is empty right now
     }
 }
 
