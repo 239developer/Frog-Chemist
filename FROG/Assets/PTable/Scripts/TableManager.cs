@@ -5,12 +5,13 @@ using UnityEngine;
 public class TableManager : MonoBehaviour
 {
     public GameObject parentObject, defaultCell;
-    public float cellSpacing = 170.0f;
-    public GameObject[] cells = {};
+    public float cellSpacing = 170.0f, scale = 0.15f;
+    public List<GameObject> cells;
 
     void CreateCell(int x, int y) //empty cell
     {
         GameObject cell = GameObject.Instantiate(defaultCell, new Vector3(x * cellSpacing, -y * cellSpacing, 0.0f), Quaternion.identity, parentObject.transform);
+        cells.Add(cell);
     }
 
     void CreateCell(int x, int y, int num, string name, int colorIndex)
@@ -19,6 +20,7 @@ public class TableManager : MonoBehaviour
         cell.GetComponent<PTableCellScript>().SetText(num, name);
         cell.GetComponent<PTableCellScript>().SetColor(colorIndex);
         cell.name = name;
+        cells.Add(cell);
     }
 
     void GenerateTable(int[] p) //p for pattern
@@ -46,9 +48,28 @@ public class TableManager : MonoBehaviour
         }
     }
 
+    void TurnTable(float value)
+    {
+        parentObject.transform.Rotate(0.0f, 0.0f, value);
+    }
+
+    void TurnAllElements(float value)
+    {
+
+    }
+
     void Start()
     {
         GenerateTable(TableInfo.pattern);
+        parentObject.transform.localScale *= scale;
+    }
+
+    void Update()
+    {
+        if(Input.GetMouseButton(0))
+        {
+            TurnTable(720 * Time.deltaTime);
+        }
     }
 }
 

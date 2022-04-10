@@ -56,4 +56,9 @@ public class PTableCellScript : MonoBehaviour
 
         GetComponent<Image>().color = color;
     }
+
+    public void Rotate()
+    {
+        
+    }
 }
