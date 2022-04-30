@@ -7,6 +7,11 @@ public class PTableCellScript : MonoBehaviour
 {
     public Text numText, nameText;
 
+    public void OpenInfo()
+    {
+        
+    }
+
     public void SetText(int num, string name)
     {
         numText.text = num.ToString();

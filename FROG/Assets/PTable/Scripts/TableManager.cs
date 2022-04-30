@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,19 +9,27 @@ public class TableManager : MonoBehaviour
     public float cellSpacing = 170.0f, scale = 0.15f;
     public List<GameObject> cells = new List<GameObject>();
 
+    private Vector2 tableSize; //table dimensions in pixels
+
     void CreateCell(int x, int y) //empty cell
     {
-        GameObject cell = GameObject.Instantiate(defaultCell, new Vector3(x * cellSpacing, -y * cellSpacing, 0.0f), Quaternion.identity, parentObject.transform);
+        Vector3 bias = parentObject.transform.position;
+        GameObject cell = GameObject.Instantiate(defaultCell, new Vector3(x * cellSpacing + bias.x, bias.y - y * cellSpacing, 0.0f), Quaternion.identity, parentObject.transform);
         cells.Add(cell);
+
+        // Debug.Log($"created cell at {cell.transform.position}");
     }
 
     void CreateCell(int x, int y, int num, string name, int colorIndex)
     {
-        GameObject cell = GameObject.Instantiate(defaultCell, new Vector3(x * cellSpacing, -y * cellSpacing, 0.0f), Quaternion.identity, parentObject.transform);
+        Vector3 bias = parentObject.transform.position;
+        GameObject cell = GameObject.Instantiate(defaultCell, new Vector3(x * cellSpacing + bias.x, bias.y - y * cellSpacing, 0.0f), Quaternion.identity, parentObject.transform);
         cell.GetComponent<PTableCellScript>().SetText(num, name);
         cell.GetComponent<PTableCellScript>().SetColor(colorIndex);
         cell.name = name;
         cells.Add(cell);
+
+        // Debug.Log($"created {name} at {cell.transform.position}");
     }
 
     void GenerateTable(int[] p) //p for pattern
@@ -65,12 +74,28 @@ public class TableManager : MonoBehaviour
     void Start()
     {
         GenerateTable(TableInfo.pattern);
-        parentObject.transform.localScale *= scale;
-    }
 
-    void Update()
-    {
-        //this is empty right now
+        tableSize = new Vector2(TableInfo.x, TableInfo.y);
+        tableSize *= cellSpacing;
+
+        float heightK = Screen.height / tableSize.y;
+        float widthK = Screen.width / tableSize.x;
+        float k = 1f;
+        Vector3 setPosition = Vector3.up * Screen.height;
+
+        if(heightK < widthK)
+        {
+            k = heightK;
+            setPosition.x = 0.5f * (Screen.width - tableSize.x * k);
+        }
+        else
+        {
+            k = widthK;
+            setPosition.y = 0.5f * (Screen.height + tableSize.y * k);
+        }
+
+        parentObject.transform.position = setPosition;
+        parentObject.transform.localScale *= scale * k;
     }
 }
 
