@@ -26,12 +26,17 @@ public class InfoWindowManager : MonoBehaviour
 
         nameText.text = $"{CE.fullName} ({CE.symbol})";
         series.text = $"Принадлежит к группе {CE.series}";
-        mass.text = $"Масса: {CE.mass} Да";
+        mass.text = $"Масса: {CE.mass} а.е.м.";
 
         Debug.Log(jsonString);
         Debug.Log(nameText.text);
         Debug.Log(series.text);
         Debug.Log(mass.text);
+    }
+
+    public void HideInfo()
+    {
+        gameObject.SetActive(false);
     }
 }
 

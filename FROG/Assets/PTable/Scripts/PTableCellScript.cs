@@ -5,14 +5,13 @@ using UnityEngine.UI;
 
 public class PTableCellScript : MonoBehaviour
 {
-    public GameObject emptyWindow;
+    public GameObject infoWindow = null;
     public Text numText, nameText;
-    private GameObject infoWindow;
 
     public void OpenInfo()
     {
-        infoWindow = GameObject.Instantiate(emptyWindow);
         infoWindow.GetComponent<InfoWindowManager>().FillInfo(nameText.text);
+        infoWindow.SetActive(true);
     }
 
     public void SetText(int num, string name)

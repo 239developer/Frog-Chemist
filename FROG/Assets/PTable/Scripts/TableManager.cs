@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TableManager : MonoBehaviour
 {
-    public GameObject parentObject, defaultCell;
+    public GameObject parentObject, defaultCell, infoWindow;
     public float cellSpacing = 170.0f, scale = 0.15f;
     public List<GameObject> cells = new List<GameObject>();
 
@@ -15,6 +15,7 @@ public class TableManager : MonoBehaviour
     {
         Vector3 bias = parentObject.transform.position;
         GameObject cell = GameObject.Instantiate(defaultCell, new Vector3(x * cellSpacing + bias.x, bias.y - y * cellSpacing, 0.0f), Quaternion.identity, parentObject.transform);
+        cell.GetComponent<PTableCellScript>().infoWindow = infoWindow;
         cells.Add(cell);
 
         // Debug.Log($"created cell at {cell.transform.position}");
@@ -26,6 +27,7 @@ public class TableManager : MonoBehaviour
         GameObject cell = GameObject.Instantiate(defaultCell, new Vector3(x * cellSpacing + bias.x, bias.y - y * cellSpacing, 0.0f), Quaternion.identity, parentObject.transform);
         cell.GetComponent<PTableCellScript>().SetText(num, name);
         cell.GetComponent<PTableCellScript>().SetColor(colorIndex);
+        cell.GetComponent<PTableCellScript>().infoWindow = infoWindow;
         cell.name = name;
         cells.Add(cell);
 
@@ -96,8 +98,6 @@ public class TableManager : MonoBehaviour
 
         parentObject.transform.position = setPosition;
         parentObject.transform.localScale *= scale * k;
-
-        TurnAllCells(90f);
     }
 }
 
