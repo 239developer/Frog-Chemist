@@ -9,12 +9,14 @@ public class TableManager : MonoBehaviour
     public float cellSpacing = 170.0f, scale = 0.15f;
     public List<GameObject> cells = new List<GameObject>();
 
+    public bool isHorizontal = true;
+
     private Vector2 tableSize; //table dimensions in pixels
 
     void CreateCell(int x, int y) //empty cell
     {
         Vector3 bias = parentObject.transform.position;
-        GameObject cell = GameObject.Instantiate(defaultCell, new Vector3(x * cellSpacing + bias.x, bias.y - y * cellSpacing, 0.0f), Quaternion.identity, parentObject.transform);
+        GameObject cell = GameObject.Instantiate(defaultCell, new Vector3((x + 0.5f) * cellSpacing + bias.x, bias.y - (y + 0.5f) * cellSpacing, 0.0f), Quaternion.identity, parentObject.transform);
         cell.GetComponent<PTableCellScript>().infoWindow = infoWindow;
         cells.Add(cell);
 
@@ -24,7 +26,7 @@ public class TableManager : MonoBehaviour
     void CreateCell(int x, int y, int num, string name, int colorIndex)
     {
         Vector3 bias = parentObject.transform.position;
-        GameObject cell = GameObject.Instantiate(defaultCell, new Vector3(x * cellSpacing + bias.x, bias.y - y * cellSpacing, 0.0f), Quaternion.identity, parentObject.transform);
+        GameObject cell = GameObject.Instantiate(defaultCell, new Vector3((x + 0.5f) * cellSpacing + bias.x, bias.y - (y + 0.5f) * cellSpacing, 0.0f), Quaternion.identity, parentObject.transform);
         cell.GetComponent<PTableCellScript>().SetText(num, name);
         cell.GetComponent<PTableCellScript>().SetColor(colorIndex);
         cell.GetComponent<PTableCellScript>().infoWindow = infoWindow;
@@ -59,18 +61,32 @@ public class TableManager : MonoBehaviour
         }
     }
 
-    void TurnTable(float value)
+    public void TurnTable(float value)
     {
         parentObject.transform.Rotate(0.0f, 0.0f, value);
     }
 
-    void TurnAllCells(float value)
+    public void TurnAllCells(float value)
     {
         if(cells != null)
         foreach(GameObject g in cells)
         {
             g.GetComponent<PTableCellScript>().Rotate(value);
         }
+    }
+
+    public void Turn90Degrees()
+    {
+        if(isHorizontal)
+        {
+            TurnAllCells(90f);
+        }
+        else
+        {
+            TurnAllCells(-90f);
+        }
+
+        isHorizontal = !isHorizontal;
     }
 
     void Start()
