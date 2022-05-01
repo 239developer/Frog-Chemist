@@ -96,6 +96,8 @@ public class TableManager : MonoBehaviour
 
         parentObject.transform.position = setPosition;
         parentObject.transform.localScale *= scale * k;
+
+        TurnAllCells(90f);
     }
 }
 
