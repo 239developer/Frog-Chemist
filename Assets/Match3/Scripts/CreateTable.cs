@@ -1,37 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class CreateTable : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject[] Elements;
 
     [SerializeField]
-    private int ElementsPerX;
+    private int Count;
 
     [SerializeField]
-    private int ElementsPerY;
+    private GameObject GameBoard;
 
     [SerializeField]
-    private float Offset = 1f;
+    private Button Button;
+
     void Start()
     {
-        createTable();
+        CreateElementTable();
     }
-    //
-    void createTable()
+
+    void CreateElementTable()
     {
-        float StartX = -Offset * (ElementsPerX - 1) / 2;
-        float StartY = -Offset * (ElementsPerY - 1) / 2;
-        
-        for (int x = 0; x < ElementsPerX; x++)
+        for (int x = 0; x < Count; x++)
         {
-            for (int y = 0; y < ElementsPerY; y++)
+            for (int y = 0; y < Count; y++)
             {
-                Instantiate(Elements[Random.Range(0, Elements.Length)], new Vector2(x * Offset + StartX, y * Offset + StartY), Quaternion.identity);
+                var _button = Instantiate(Button, GameBoard.transform);
+                _button.name = $"Element {x * Count + y}";
             }
         }
     }
-
 }
