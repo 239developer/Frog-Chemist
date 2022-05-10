@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class CreateTable : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject GameController;
 
     [SerializeField]
     private int Count;
@@ -16,6 +18,7 @@ public class CreateTable : MonoBehaviour
     void Start()
     {
         CreateElementTable();
+        GameController.SetActive(true);
     }
 
     void CreateElementTable()

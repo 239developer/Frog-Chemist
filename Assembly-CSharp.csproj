@@ -54,6 +54,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Match3\Scripts\CreateTable.cs" />
+    <Compile Include="Assets\Match3\Scripts\Element.cs" />
+    <Compile Include="Assets\Match3\Scripts\GameController.cs" />
     <Compile Include="Assets\Match3\Scripts\StartGame.cs" />
   </ItemGroup>
   <ItemGroup>
