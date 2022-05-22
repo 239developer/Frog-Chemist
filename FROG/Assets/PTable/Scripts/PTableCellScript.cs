@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class PTableCellScript : MonoBehaviour
 {
@@ -10,8 +11,11 @@ public class PTableCellScript : MonoBehaviour
 
     public void OpenInfo()
     {
-        infoWindow.GetComponent<InfoWindowManager>().FillInfo(nameText.text);
-        infoWindow.SetActive(true);
+        if(nameText.text != "")
+        {
+            infoWindow.GetComponent<InfoWindowManager>().FillInfo(Int32.Parse(numText.text) - 1);
+            infoWindow.SetActive(true);
+        }
     }
 
     public void SetText(int num, string name)

@@ -73,6 +73,7 @@ public class TableManager : MonoBehaviour
         {
             g.GetComponent<PTableCellScript>().Rotate(value);
         }
+        infoWindow.transform.Rotate(0f, 0f, value);
     }
 
     public void Turn90Degrees()
@@ -92,28 +93,32 @@ public class TableManager : MonoBehaviour
     void Start()
     {
         GenerateTable(TableInfo.pattern);
+        // infoWindow.SetActive(false);
 
         tableSize = new Vector2(TableInfo.x, TableInfo.y);
         tableSize *= cellSpacing;
 
-        float heightK = Screen.height / tableSize.y;
-        float widthK = Screen.width / tableSize.x;
+        float widthK = Screen.width / tableSize.y;
+        float heightK = Screen.height / tableSize.x;
         float k = 1f;
         Vector3 setPosition = Vector3.up * Screen.height;
 
         if(heightK < widthK)
         {
             k = heightK;
-            setPosition.x = 0.5f * (Screen.width - tableSize.x * k);
+            setPosition.x = 0.5f * (Screen.width + tableSize.y * k);
         }
         else
         {
             k = widthK;
-            setPosition.y = 0.5f * (Screen.height + tableSize.y * k);
+            setPosition.x = Screen.width;
         }
 
+        parentObject.transform.Rotate(0f, 0f, -90f);
         parentObject.transform.position = setPosition;
         parentObject.transform.localScale *= scale * k;
+
+        Turn90Degrees();
     }
 }
 
