@@ -8,7 +8,7 @@ public class spawner : MonoBehaviour
     public GameObject[] enemyPrefabs;
     public bool possible;
     public int cooldown;
-    public float a;
+    public float a = 0f;//time sinc last spawn
     public List<GameObject> currents = new List<GameObject>();
     public GameObject[] buttons;    
 
@@ -16,23 +16,18 @@ public class spawner : MonoBehaviour
 
     void Start()
     {
-        a = Mathf.FloorToInt(Time.time);
+        a = 0f;
     }
 
     void Update()
     {
-        //UnityEngine.Debug.Log(Time.deltaTime);
-        a+=Time.deltaTime;
-        if(a>cooldown)
+        if(Time.time - a > cooldown)
         {
-            a-=cooldown;
-            //UnityEngine.Debug.Log(a);
+            a = Time.time;
             int randEnemy = Random.Range(0,enemyPrefabs.Length);
             int spawnPoint = Random.Range(0,spawnPoints.Length);
 
             currents.Add(Instantiate(enemyPrefabs[randEnemy],spawnPoints[spawnPoint].position,transform.rotation,canv.transform));
-            //Class c = new Class();
-            //currents.RemoveAt(0);
         }
     }
 }

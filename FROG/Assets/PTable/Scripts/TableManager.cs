@@ -101,7 +101,9 @@ public class TableManager : MonoBehaviour
         float widthK = Screen.width / tableSize.y;
         float heightK = Screen.height / tableSize.x;
         float k = 1f;
-        Vector3 setPosition = Vector3.up * Screen.height;
+
+        float x = Screen.height - 50;
+        Vector3 setPosition = Vector3.up * x;
 
         if(heightK < widthK)
         {
