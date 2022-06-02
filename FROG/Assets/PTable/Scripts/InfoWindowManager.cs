@@ -15,7 +15,7 @@ public class InfoWindowManager : MonoBehaviour
         ChemicalElement CE = JsonUtility.FromJson<ChemicalElement>(jsonString);
 
         heading.text = $"{CE.name} ({CE.symbol})";
-        info.text = $"Атомное число: {CE.number}" + "\n" + $"Атомная масса: {CE.mass} а.е.м." + "\n" + $"Принадлежит к {CE.group} группе" + "\n" + $"Температура кипения: {CE.bp}°C" + "\n" + $"Температура плавления: {CE.mp}°C" + "\n" + $"Степени окисления: {CE.oxidationStates}";
+        info.text = $"Атомное число: {CE.number}" + "\n" + $"Атомная масса: {CE.mass} а.е.м." + "\n" + $"Принадлежит к {CE.group} группе" + "\n" + $"Степени окисления: {CE.oxidationStates}";
     }
 
     public void HideInfo()
