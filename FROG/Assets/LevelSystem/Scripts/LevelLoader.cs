@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System;
 
 public class LevelLoader : MonoBehaviour
@@ -10,7 +11,11 @@ public class LevelLoader : MonoBehaviour
     public void LoadLevelByButton(GameObject button)
     {
         int id = Convert.ToInt32(button.GetComponentInChildren<Text>().text);
-        
-        Debug.Log(id);
+        LoadLevelByID(id);
     }   
+
+    public void LoadLevelByID(int id)
+    {
+        LevelManager.SetInfo
+    }
 }

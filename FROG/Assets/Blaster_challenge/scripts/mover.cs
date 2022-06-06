@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class mover : MonoBehaviour
 {
-    public float speed;
+    public static float speed;
     public Class parametrs;
 
-    public Class[] quests;
+    public static Class[] quests;
+    public static Class[] availableQuestions;
 
     public Text mytext;
     public Text ans1;
