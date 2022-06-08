@@ -11,7 +11,7 @@ public class LevelManager : MonoBehaviour
     };
     public static Dictionary<String, Int32> sceneBindings = 
     new Dictionary<String, Int32>(){
-        {"Blaster Challenge", 2}, 
+        {"Blaster Challenge", 3}, 
 
     };
 
@@ -22,7 +22,7 @@ public class LevelManager : MonoBehaviour
 
     public static int GetSceneById(int id)
     {
-        return sceneBindings[levelInfos[id].GetLevelType];
+        return sceneBindings[levelInfos[id].GetLevelType()];
     }
 
     public static void SetInfo(LevelInfo info)
@@ -30,7 +30,7 @@ public class LevelManager : MonoBehaviour
         switch(info.GetLevelType())
         {
             case "Blaster Challenge":
-                SetInfoBC(info);
+                SetInfoBC((LevelInfoBC)info);
                 break;
         }
     }

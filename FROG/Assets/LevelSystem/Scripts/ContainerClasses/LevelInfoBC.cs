@@ -13,7 +13,7 @@ public class LevelInfoBC : LevelInfo
         spawnDelay = d;
     }
 
-    override public string GetLevelType()
+    new public string GetLevelType()
     {
         return "Blaster Challenge"; 
     }
