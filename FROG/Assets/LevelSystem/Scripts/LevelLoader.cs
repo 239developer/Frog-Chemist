@@ -16,6 +16,9 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadLevelByID(int id)
     {
-        LevelManager.SetInfo
+        LevelManager.SetInfoByID(id);
+
+        int scene = LevelManager.GetSceneById(id);
+        SceneManager.LoadScene(scene);
     }
 }
