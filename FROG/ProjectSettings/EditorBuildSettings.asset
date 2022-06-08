@@ -21,9 +21,15 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Blaster_challenge/Scenes/blaster_challenge.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/General/Scenes/Main Menu.unity
+    guid: fe5ae304effac93069044ee2ae1fe871
+  - enabled: 1
+    path: Assets/LevelSystem/Scenes/Levels.unity
+    guid: a5cd71004991999ee861304878600df6
   - enabled: 1
     path: Assets/PTable/Scenes/PTable.unity
     guid: 4580a036200289b498a18baa898a2066
+  - enabled: 1
+    path: Assets/Blaster_challenge/Scenes/blaster_challenge.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
