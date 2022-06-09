@@ -5,21 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/General/Scenes/Main Menu.unity
     guid: fe5ae304effac93069044ee2ae1fe871
@@ -32,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Blaster_challenge/Scenes/blaster_challenge.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/TheoryBook/Scenes/Message window.unity
+    guid: ed96985535c91d7bfb43eade77127059
   m_configObjects: {}

@@ -1,4 +1,4 @@
-public class LevelInfoBC : LevelInfo
+public class LevelInfoBC : LevelInfo //for "blaster challenge" levels
 {
     public Class[] availableQuestions;
     public float speed;
@@ -13,7 +13,7 @@ public class LevelInfoBC : LevelInfo
         spawnDelay = d;
     }
 
-    new public string GetLevelType()
+    override public string GetLevelType()
     {
         return "Blaster Challenge"; 
     }

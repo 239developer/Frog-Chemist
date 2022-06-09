@@ -35,6 +35,8 @@ public class buttons : MonoBehaviour
                     else
                     {
                         globals.answer += plus;
+                        pointer = 1;
+                        globals.pointer = pointer;
                     }
                 }
                 else
