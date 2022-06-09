@@ -52,7 +52,7 @@ public class mover : MonoBehaviour
             Destroy(gameObject);
         }
 
-        score.text=("Score: "+System.Convert.ToString(globals.score));
+        score.text=("Счет: "+System.Convert.ToString(globals.score));
     }
 }
 
