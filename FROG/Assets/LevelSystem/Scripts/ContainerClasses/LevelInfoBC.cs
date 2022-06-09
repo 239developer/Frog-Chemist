@@ -1,4 +1,4 @@
-public class LevelInfoBC : LevelInfo
+public class LevelInfoBC : LevelInfo //for "blaster challenge" levels
 {
     public Class[] availableQuestions;
     public float speed;

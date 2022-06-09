@@ -8,19 +8,21 @@ public class mover : MonoBehaviour
     public static float speed;
     public Class parametrs;
 
-    public static Class[] quests;
+    public Class[] quests;
     public static Class[] availableQuestions;
 
     public Text mytext;
     public Text ans1;
     public Text ans2;
-    public Text scor;
+    public Text score;
 
     void Start()
-    {
+    {   
+        if(availableQuestions != null)
+            quests = availableQuestions;
         ans1=GameObject.Find("a1").GetComponent<Text>();
         ans2=GameObject.Find("a2").GetComponent<Text>();
-        scor=GameObject.Find("score").GetComponent<Text>();
+        score=GameObject.Find("score").GetComponent<Text>();
         parametrs=quests[Random.Range(0,quests.Length)];
         mytext.text=parametrs.questionText;
     }
@@ -50,7 +52,7 @@ public class mover : MonoBehaviour
             Destroy(gameObject);
         }
 
-        scor.text=("Score: "+System.Convert.ToString(globals.score));
+        score.text=("Счет: "+System.Convert.ToString(globals.score));
     }
 }
 
@@ -61,10 +63,10 @@ public class Class
     public int ans;
     public float size;
 
-    public Class(string s, int a, float si)
+    public Class(string text, int a, float s)
     {
-        questionText = s;
+        questionText = text;
         ans = a;
-        size = si;
+        size = s;
     }
 }

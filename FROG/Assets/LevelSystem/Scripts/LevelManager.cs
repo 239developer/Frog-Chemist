@@ -5,14 +5,12 @@ using System;
 
 public class LevelManager : MonoBehaviour
 {
-    public static Dictionary<Int32, LevelInfo> levelInfos = 
-    new Dictionary<Int32, LevelInfo>{
-
-    };
+    public static int currentPage = 1;
+    public static int currentLevel = 7;
     public static Dictionary<String, Int32> sceneBindings = 
     new Dictionary<String, Int32>(){
-        {"Blaster Challenge", 2}, 
-
+        {"Blaster Challenge", 3}, 
+        {"Message", 4},
     };
 
     public static void SetInfoByID(int id) //note that id means level number, not index
@@ -22,7 +20,8 @@ public class LevelManager : MonoBehaviour
 
     public static int GetSceneById(int id)
     {
-        return sceneBindings[levelInfos[id].GetLevelType];
+        currentLevel = id;
+        return sceneBindings[levelInfos[id].GetLevelType()];
     }
 
     public static void SetInfo(LevelInfo info)
@@ -30,7 +29,10 @@ public class LevelManager : MonoBehaviour
         switch(info.GetLevelType())
         {
             case "Blaster Challenge":
-                SetInfoBC(info);
+                SetInfoBC((LevelInfoBC)info);
+                break;
+            case "Message":
+                SetInfoMsg((LevelInfoMsg)info);
                 break;
         }
     }
@@ -40,4 +42,18 @@ public class LevelManager : MonoBehaviour
         mover.availableQuestions = info.availableQuestions;
         mover.speed = info.speed;
     }
+
+    public static void SetInfoMsg(LevelInfoMsg info) //Messages or dialogues
+    {
+        MessageManager.currentMessage = info.messageID;
+    }
+
+    public static Dictionary<Int32, LevelInfo> levelInfos = 
+    new Dictionary<Int32, LevelInfo>{
+        {6, new LevelInfo()},
+        {7, new LevelInfoMsg(0)},
+        {8, new LevelInfoMsg(1)},
+        {9, new LevelInfoBC(globals.questionsToAsk[0], 1f, 1f, 1f)},
+        {10, new LevelInfo()},
+    };
 }

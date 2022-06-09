@@ -1,7 +1,11 @@
 public class LevelInfo
 {
-    public int id;
-    public string GetLevelType()
+    public bool isOpened = false;
+    public bool isFinished = false;
+
+    public LevelInfo(){}
+
+    public virtual string GetLevelType()
     {
         return "";
     }

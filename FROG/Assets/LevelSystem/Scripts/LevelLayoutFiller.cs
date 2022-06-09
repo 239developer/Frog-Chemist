@@ -13,19 +13,23 @@ public class LevelLayoutFiller : MonoBehaviour
 
     private GameObject[] levelButtons, connectionLines;
     private GameObject canvas;
+    private bool nullAfter = false;
 
     public void Fill()
     {
+        firstLevel = LevelManager.currentPage * 5 + 1;
+
         levelButtons = new GameObject[5];
         connectionLines = new GameObject[6];
         canvas = GameObject.FindWithTag("Main Canvas");
-        if(levelIcons == null)
+        if(levelIcons == null || levelIcons.Length == 0)
         {
             levelIcons = new GameObject[5];
             for(int i = 0; i < 5; i++)
             {
                 levelIcons[i] = basicIcon;
             }
+            nullAfter = true;
         }
 
         for (int i = 0; i < 6; i++) //6 is for anchors.Length - 1
@@ -36,7 +40,7 @@ public class LevelLayoutFiller : MonoBehaviour
             ObjectConnector.ConnectTwo(line, pos0, pos1);
         }
 
-        for (int i = 0; i < 5; i++) //5 is for levelIcons.Length
+        for (int i = 0; i < levelIcons.Length; i++) //5 is for levelIcons.Length
         {
             GameObject icon = levelIcons[i];
             Vector3 position = anchors[i + 1].transform.position;
@@ -45,11 +49,24 @@ public class LevelLayoutFiller : MonoBehaviour
             
             levelButtons[i] = GameObject.Instantiate(icon, position, rotation, parent);
             levelButtons[i].GetComponentInChildren<Text>().text = (firstLevel + i).ToString();
+
+            bool isOpened = LevelManager.levelInfos[firstLevel + i].isOpened;
+            levelButtons[i].GetComponent<Button>().interactable = isOpened;
+        }
+
+        if(nullAfter)
+        {
+            levelIcons = new GameObject[0];
+            nullAfter = false;
         }
     }
 
     void Start()
     {
+        LevelManager.levelInfos[7].isOpened = true;
+        LevelManager.levelInfos[8].isOpened = true;
+        LevelManager.levelInfos[9].isOpened = true;
+
         Fill();
     }
 }
