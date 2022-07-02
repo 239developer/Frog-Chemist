@@ -1,7 +1,7 @@
 public class LevelInfo
 {
     public int id;
-    public string GetLevelType()
+    virtual public string GetLevelType()
     {
         return "";
     }
