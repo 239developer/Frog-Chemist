@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 
-public class Element
+public class Element : MonoBehaviour
 {
-    public int OxidationState { get; set; }
+    public int OxidationState;
 
-    public void ConvertOxidationState(string oxidationState)
-    {
-        this.OxidationState = int.Parse(oxidationState);
-    }
+    public string Name;
+
+    public Sprite Sprite;
 }

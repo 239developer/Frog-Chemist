@@ -3,7 +3,7 @@
 public class StartGame : MonoBehaviour
 {
     [SerializeField]
-    private GameObject GameManager;
+    private GameObject GameController;
     void Start()
     {
         Time.timeScale = 0;
@@ -14,8 +14,8 @@ public class StartGame : MonoBehaviour
         if (Input.touchCount > 0 || Input.GetKeyDown(KeyCode.S))
         {
             gameObject.SetActive(false);
-            GameManager.SetActive(true);
             Time.timeScale = 1;
+            GameController.SetActive(true);
         }
     }
 }

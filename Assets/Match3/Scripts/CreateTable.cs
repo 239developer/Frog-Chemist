@@ -4,31 +4,38 @@ using UnityEngine.UI;
 public class CreateTable : MonoBehaviour
 {
     [SerializeField]
-    private GameObject GameController;
+    private GameObject[] PrefabList;
 
     [SerializeField]
-    private int Count;
+    private int ElementsPerSide;
 
     [SerializeField]
     private GameObject GameBoard;
 
     [SerializeField]
-    private Button Button;
+    private Button ButtonTemplate;
+
+    [System.NonSerialized]
+    public Element[,] Elements;
 
     void Start()
     {
-        CreateElementTable();
-        GameController.SetActive(true);
-    }
-
-    void CreateElementTable()
-    {
-        for (int x = 0; x < Count; x++)
+        Elements = new Element[ElementsPerSide, ElementsPerSide];
+        ButtonInfo info;
+        for (int i = 0; i < ElementsPerSide; i++)
         {
-            for (int y = 0; y < Count; y++)
+            for (int j = 0; j < ElementsPerSide; j++)
             {
-                var _button = Instantiate(Button, GameBoard.transform);
-                _button.name = $"Element {x * Count + y}";
+
+                Elements[i, j] = PrefabList[Random.Range(0, PrefabList.Length)].GetComponent<Element>();
+
+                ButtonTemplate.image.sprite = Elements[i, j].Sprite;
+                info = ButtonTemplate.GetComponent<ButtonInfo>();
+                info.PositionX = i;
+                info.PositionY = j;
+                ButtonTemplate.transform.localScale = new Vector2(1, 1);
+
+                Instantiate(ButtonTemplate, GameBoard.transform);
             }
         }
     }
