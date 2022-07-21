@@ -94,6 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c6914f41e1ef414d9554956c464587e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OxidationState: 1
+  OxidationState: 2
   Name: Lithium
   Sprite: {fileID: 21300000, guid: 779e96e1b0690d34baf1b1c31b1a54cb, type: 3}

@@ -3,7 +3,9 @@
 public class StartGame : MonoBehaviour
 {
     [SerializeField]
-    private GameObject GameController;
+    private GameObject GameStart;
+    [SerializeField]
+    private GameObject ScoreText;
     void Start()
     {
         Time.timeScale = 0;
@@ -15,7 +17,8 @@ public class StartGame : MonoBehaviour
         {
             gameObject.SetActive(false);
             Time.timeScale = 1;
-            GameController.SetActive(true);
+            GameStart.SetActive(true);
+            ScoreText.SetActive(true);
         }
     }
 }
